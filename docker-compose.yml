@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+      - MAX_RDF_CACHE_SIZE=1000000
+      - ENABLE_RDF_PERSISTENCE=true
+    mem_limit: 2g
+    restart: unless-stopped
