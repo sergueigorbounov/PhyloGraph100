@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --secondary: #ec4899;
+  --accent: #8b5cf6;
+  --dark-bg: #0f172a;
+  --dark-surface: #1e293b;
+  --dark-surface-hover: #334155;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-disabled: #64748b;
+  --border-color: #334155;
+  --glow-primary: rgba(99, 102, 241, 0.5);
+  --glow-secondary: rgba(236, 72, 153, 0.5);
+}
+
+/* Global styles */
+body {
+  @apply bg-slate-900 text-slate-50 font-sans;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: linear-gradient(to bottom right, var(--dark-bg), #0f0f23);
+}
+
+.code-font {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Custom components */
+@layer components {
+  .phylo-container {
+    @apply h-screen flex flex-col;
+    background: linear-gradient(120deg, #0f172a 0%, #1e1b4b 100%);
+  }
+  
+  .phylo-panel {
+    @apply rounded-lg overflow-hidden shadow-xl;
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+  }
+  
+  .phylo-panel-header {
+    @apply flex items-center px-3 py-2 border-b text-slate-50 font-medium;
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(10px);
+    border-color: var(--border-color);
+  }
+  
+  .phylo-btn {
+    @apply px-3 py-1.5 rounded-md font-medium transition-all duration-200 flex items-center justify-center;
+  }
+  
+  .phylo-btn-primary {
+    @apply phylo-btn bg-indigo-600 hover:bg-indigo-700 text-white shadow-md;
+    box-shadow: 0 0 10px var(--glow-primary);
+  }
+  
+  .phylo-btn-secondary {
+    @apply phylo-btn bg-pink-600 hover:bg-pink-700 text-white shadow-md;
+    box-shadow: 0 0 10px var(--glow-secondary);
+  }
+  
+  .phylo-btn-ghost {
+    @apply phylo-btn bg-transparent hover:bg-slate-700/50 text-slate-300;
+  }
+  
+  .phylo-input {
+    @apply bg-slate-800/70 border border-slate-700 rounded-md px-3 py-1.5 text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all duration-200;
+  }
+  
+  .phylo-select {
+    @apply bg-slate-800/70 border border-slate-700 rounded-md px-3 py-1.5 text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all duration-200;
+  }
+  
+  .phylo-toggle-btn {
+    @apply z-10 absolute bg-indigo-800/70 p-1.5 backdrop-blur-sm text-white rounded shadow-lg;
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+    transition: all 0.3s ease;
+  }
+  
+  .phylo-toggle-btn:hover {
+    @apply bg-indigo-700;
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
+    transform: scale(1.05);
+  }
+  
+  .phylo-divider {
+    @apply h-px w-full my-3 bg-gradient-to-r from-transparent via-slate-600 to-transparent;
+  }
+  
+  .phylo-badge {
+    @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium;
+  }
+  
+  /* Node type badges */
+  .phylo-badge-gene {
+    @apply bg-blue-900/60 text-blue-200;
+  }
+  
+  .phylo-badge-orthogroup {
+    @apply bg-emerald-900/60 text-emerald-200;
+  }
+  
+  .phylo-badge-species {
+    @apply bg-orange-900/60 text-orange-200;
+  }
+  
+  .phylo-badge-protein {
+    @apply bg-purple-900/60 text-purple-200;
+  }
+  
+  /* Scroll bars */
+  .phylo-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--dark-surface-hover) var(--dark-surface);
+  }
+  
+  .phylo-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .phylo-scrollbar::-webkit-scrollbar-track {
+    background: var(--dark-surface);
+  }
+  
+  .phylo-scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--dark-surface-hover);
+    border-radius: 6px;
+  }
+  
+  /* Tooltip */
+  .phylo-tooltip {
+    @apply absolute invisible opacity-0 bg-slate-800 text-slate-200 text-xs rounded py-1 px-2 transition-all duration-150 z-50;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+  }
+  
+  *:hover > .phylo-tooltip {
+    @apply visible opacity-100;
+    transform: translateY(-5px);
+  }
+  
+  /* Loading spinner */
+  .phylo-spinner {
+    @apply w-6 h-6 border-2 border-slate-600 rounded-full animate-spin;
+    border-top-color: var(--primary);
+  }
+  
+  /* Card */
+  .phylo-card {
+    @apply bg-slate-800/70 backdrop-blur-sm border border-slate-700 rounded-lg overflow-hidden shadow-lg transition-all duration-200;
+  }
+  
+  .phylo-card:hover {
+    @apply border-slate-600 shadow-xl;
+    transform: translateY(-2px);
+  }
+  
+  /* Glowing effects */
+  .glow-text {
+    text-shadow: 0 0 10px var(--glow-primary);
+  }
+  
+  .glow-primary {
+    box-shadow: 0 0 15px var(--glow-primary);
+  }
+  
+  .glow-secondary {
+    box-shadow: 0 0 15px var(--glow-secondary);
+  }
+  
+  /* Responsive containers */
+  .responsive-grid {
+    @apply grid gap-3;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  
+  /* Animation utilities */
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .animate-slideIn {
+    animation: slideIn 0.3s ease-out;
+  }
+  
+  .animate-pulse-glow {
+    animation: pulseGlow 2s infinite;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideIn {
+    from { transform: translateY(10px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  @keyframes pulseGlow {
+    0% { box-shadow: 0 0 5px var(--glow-primary); }
+    50% { box-shadow: 0 0 20px var(--glow-primary); }
+    100% { box-shadow: 0 0 5px var(--glow-primary); }
+  }
+}

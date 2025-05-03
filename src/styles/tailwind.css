@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styling for PhyloGraph */
+@layer components {
+  .phylo-btn {
+    @apply px-3 py-1 rounded font-medium transition-colors;
+  }
+  
+  .phylo-btn-blue {
+    @apply phylo-btn bg-blue-600 hover:bg-blue-700 text-white;
+  }
+  
+  .phylo-btn-red {
+    @apply phylo-btn bg-red-600 hover:bg-red-700 text-white;
+  }
+  
+  .phylo-btn-green {
+    @apply phylo-btn bg-green-600 hover:bg-green-700 text-white;
+  }
+  
+  .phylo-btn-gray {
+    @apply phylo-btn bg-gray-600 hover:bg-gray-700 text-white;
+  }
+  
+  .phylo-panel {
+    @apply bg-dark-panel rounded-md shadow-md;
+  }
+  
+  .phylo-panel-header {
+    @apply bg-dark-accent px-3 py-2 font-medium text-white border-b border-gray-700;
+  }
+  
+  .phylo-panel-body {
+    @apply p-3;
+  }
+}
